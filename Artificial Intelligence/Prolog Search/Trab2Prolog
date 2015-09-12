@@ -1,0 +1,66 @@
+sentenca(X,[Art|Nome],[V|FV]):-
+ write('sent(frase_nom(artigo('),
+ write(Art),write('),substantivo('),
+ write(Nome),
+ write(')),frase_verbal(verbo('),
+ write(V),write(') '),
+ write(FV), nl.
+
+sentenca(FN, FV):- frase_nom(FN), frase_verb(FV) ; frase_nom_p(FN), frase_verb_p(FV).
+
+frase_nom([]).
+frase_nom([D,N]):- det_f(D), nome_f(N) ; det_m(D), nome_m(N).
+frase_nom([P,D,N]):- prep(P), det_f(D), nome_f(N) ; prep(P), det_m(D), nome_m(N).
+frase_verb([V|FV]):- verbo(V), frase_nom(FV) ; verbo(V), frase_nom_p(FV).
+
+frase_nom_p([]).
+frase_nom_p([D,N]):- det_f_p(D), nome_f_p(N) ; det_m_p(D), nome_m_p(N).
+frase_nom_p([P,D,N]):- prep(P), det_f_p(D), nome_f_p(N) ; prep(P), det_m_p(D), nome_m_p(N).
+frase_verb_p([V|FV]):- verbo_p(V), frase_nom_p(FV) ; verbo_p(V), frase_nom(FV).
+
+% no = em o, é det para facilitar os calculos
+% pela = por a, é det para facilitar os calculos
+det_m(o).
+det_m(no).
+det_m(pelo).
+det_m_p(os).
+det_f(a).
+det_f(na).
+det_f(pela).
+det_f(l).
+det_f_p(as).
+
+prep(para).
+prep(com).
+
+nome_f(menina).
+nome_f(noticia).
+nome_f(cidade).
+nome_f(casa).
+nome_f(porta).
+nome_f(floresta).
+nome_f(mae).
+nome_f(vida).
+nome_f_p(meninas).
+nome_f_p(lagrimas).
+nome_m(tempo).
+nome_m(tambor).
+nome_m(sino).
+nome_m(martelo).
+nome_m(rio).
+nome_m(mar).
+nome_m(rosto).
+nome_m(vento).
+nome_m(cacador).
+nome_m(cachorro).
+nome_m_p(tempos).
+nome_m_p(tambores).
+nome_m_p(lobos).
+
+verbo(corre).
+verbo(correu).
+verbo(bateu).
+verbo_p(correm).
+verbo_p(correram).
+verbo_p(corriam).
+verbo_p(bateram).

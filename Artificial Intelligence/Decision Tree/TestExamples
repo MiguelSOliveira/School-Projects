@@ -1,0 +1,34 @@
+irisTest = [["X90","5.1SL","3.5SW","1.4PL","0.2PW","Iris-virginica"],
+["X7", "4.9SL","3.0SW","1.4PL","0.2PW","Iris-setosa"],
+["X60","5.2SL","2.7SW","3.9PL","1.4PW","Iris-versicolor"],
+["X88","6.3SL","2.3SW","4.4PL","1.3PW"],
+["X150","5.9SL","3.0SW","5.1PL","1.8PW","Iris-virginica"]]
+
+weatherTest = [["1","sunny","85Temp","85Hum","FALSE","yes"],
+["11","sunny","75Temp","70Hum","TRUE","yes"],
+["6","rainy","65Temp","70Hum","TRUE" ,"no"],
+["14","rainy","71Temp","91Hum","TRUE","no"]]
+
+restaurantTest2 =[ ["X2","YesAlt","NoBar","NoFri","YesHun","Full","$","NoRain","NoRes","Thai","30-60","No"],
+["X4","YesAlt","NoBar","YesFri","YesHun","Full","$","YesRain","NoRes","Thai","10-30","Yes"],
+["X5","YesAlt","NoBar","YesFri","NoHun","Full","$$$","NoRain","YesRes","French",">60","No"],
+["X9","NoAlt","YesBar","YesFri","NoHun","Full","$","NoRain","NoRes","Burger",">60","No"],
+["X10","YesAlt","YesBar","YesFri","YesHun","Full","$$$","NoRain","YesRes","Italian","10-30","No"],
+["X12","YesAlt","YesBar","YesFri","YesHun","Full","$","NoRain","NoRes","Burger","30-60","Yes"]]
+
+restaurantTest = [["X1","YesAlt","NoBar","NoFri","YesHun","Some","$$$","NoRain","YesRes","French","0-10","Yes"],
+["X2","YesAlt","NoBar","NoFri","YesHun","Full","$","NoRain","NoRes","Thai","30-60","No"],
+["X3","NoAlt","YesBar","NoFri","NoHun","Some","$","NoRain","NoRes","Burger","0-10","Yes"],
+["X4","YesAlt","NoBar","YesFri","YesHun","Full","$","YesRain","NoRes","Thai","10-30","Yes"],
+["X5","YesAlt","NoBar","YesFri","NoHun","Full","$$$","NoRain","YesRes","French",">60","No"],
+["X6","NoAlt","YesBar","NoFri","YesHun","Some","$$","YesRain","YesRes","Italian","0-10","Yes"],
+["X7","NoAlt","YesBar","NoFri","NoHun","None","$","NoRain","NoRes","Burger","0-10","No"],
+["X8","NoAlt","NoBar","NoFri","YesHun","Some","$$","YesRain","YesRes","Thai","0-10","Yes"],
+["X9","NoAlt","YesBar","YesFri","NoHun","Full","$","NoRain","NoRes","Burger",">60","No"],
+["X10","YesAlt","YesBar","YesFri","YesHun","Full","$$$","NoRain","YesRes","Italian","10-30","No"],
+["X11","NoAlt","NoBar","NoFri","NoHun","None","$","NoRain","NoRes","Thai","0-10","No"],
+["X12","YesAlt","YesBar","YesFri","YesHun","Full","$","NoRain","NoRes","Burger","30-60","Yes"]]
+
+testExample = ["14","rainy","71Temp","91Hum","TRUE","no"]
+testExample2 = ["X1","YesAlt","NoBar","NoFri","YesHun","Some","$$$","NoRain","YesRes","French","0-10","Yes"]
+testExample3 = ["X77","6.8SL","2.8SW","4.8PL","1.4PW"]

@@ -1,0 +1,15 @@
+ID,outlook,temperature,humidity,wind,play
+1,sunny,85Temp,85Hum,FALSE,no
+2,sunny,80Temp,90Hum,TRUE,no
+3,overcast,83Temp,86Hum,FALSE,yes
+4,rainy,70Temp,96Hum,FALSE,yes
+5,rainy,68Temp,80Hum,FALSE,yes
+6,rainy,65Temp,70Hum,TRUE,no
+7,overcast,64Temp,65Hum,TRUE,yes
+8,sunny,72Temp,95Hum,FALSE,no
+9,sunny,69Temp,70Hum,FALSE,yes
+10,rainy,75Temp,80Hum,FALSE,yes
+11,sunny,75Temp,70Hum,TRUE,yes
+12,overcast,72Temp,90Hum,TRUE,yes
+13,overcast,81Temp,75Hum,FALSE,yes
+14,rainy,71Temp,91Hum,TRUE,no

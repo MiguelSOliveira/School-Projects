@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="normalize.css">
+  <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Tic Tac Toe Minimax Algorithm</title>
+  <link rel="shortcut icon" href="https://cdn3.iconfinder.com/data/icons/brain-games/1042/Tic-Tac-Toe-Game-grey.png">
+  <p>Tic Tac Toe Implementation</p>
+</head>
+<body>
+<div>
+  <button class=restart onclick="restartGame()">Restart</button>
+</div>
+<table>
+  <tr>
+    <td>
+      <button id="0" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+    <td>
+      <button id="1" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+    <td>
+    <button id="2" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <button id="3" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+    <td>
+    <button id="4" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+    <td>
+    <button id="5" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <button id="6" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+    <td>
+    <button id="7" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+    <td>
+    <button id="8" class="board" onclick="clickFunction(this.id)"></button>
+    </td>
+  </tr>
+</table>
+<script src="TicTacToeJS.js"></script>
+</body>
+</html>

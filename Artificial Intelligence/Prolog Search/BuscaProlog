@@ -1,0 +1,9 @@
+% caminho(+A,+B, -Caminho)
+
+
+%Caso base
+caminho(Dest, Dest, Visitados, Visitados).
+caminho(Orig, Dest, Visitados, Path):-
+ edge(Orig, X),
+ \+ member(X, Visitados),
+ caminho(X, Dest, [X|Visitados], Path).

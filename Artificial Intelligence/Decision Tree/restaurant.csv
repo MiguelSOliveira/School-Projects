@@ -1,0 +1,13 @@
+ID,Alt,Bar,Fri,Hun,Pat,Price,Rain,Res,Type,Est,WillWait
+X1,YesAlt,NoBar,NoFri,YesHun,Some,$$$,NoRain,YesRes,French,0-10,Yes
+X2,YesAlt,NoBar,NoFri,YesHun,Full,$,NoRain,NoRes,Thai,30-60,No
+X3,NoAlt,YesBar,NoFri,NoHun,Some,$,NoRain,NoRes,Burger,0-10,Yes
+X4,YesAlt,NoBar,YesFri,YesHun,Full,$,YesRain,NoRes,Thai,10-30,Yes
+X5,YesAlt,NoBar,YesFri,NoHun,Full,$$$,NoRain,YesRes,French,>60,No
+X6,NoAlt,YesBar,NoFri,YesHun,Some,$$,YesRain,YesRes,Italian,0-10,Yes
+X7,NoAlt,YesBar,NoFri,NoHun,None,$,NoRain,NoRes,Burger,0-10,No
+X8,NoAlt,NoBar,NoFri,YesHun,Some,$$,YesRain,YesRes,Thai,0-10,Yes
+X9,NoAlt,YesBar,YesFri,NoHun,Full,$,NoRain,NoRes,Burger,>60,No
+X10,YesAlt,YesBar,YesFri,YesHun,Full,$$$,NoRain,YesRes,Italian,10-30,No
+X11,NoAlt,NoBar,NoFri,NoHun,None,$,NoRain,NoRes,Thai,0-10,No
+X12,YesAlt,YesBar,YesFri,YesHun,Full,$,NoRain,NoRes,Burger,30-60,Yes

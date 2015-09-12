@@ -1,0 +1,42 @@
+.board {
+  width: 170px;
+  height: 170px;
+  font-size: 800%;
+  font-weight: bold;
+  font-family: 'Fredoka One', cursive;  
+  color: blue;
+}
+
+button{
+  color:#08233e;
+  padding:14px;
+  font-family: 'Fredoka One', cursive;
+  background: rgba(255,255,255,0);
+  border-bottom:1px solid #9f9f9f;
+  border-radius: 20px;
+}
+
+button:hover{background-color:rgba(230,230,255, 1);}
+
+body {
+  background: url(http://www.pulsarwallpapers.com/data/media/3/Alien%20Ink%202560X1600%20Abstract%20Background.jpg);
+  background-size: cover;
+}
+
+div {
+  text-align: center;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+p {
+  text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 35px;
+  margin-bottom: 3px;
+}
+
+table {
+  text-align: center;
+  margin: 0 auto;
+}

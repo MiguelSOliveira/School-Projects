@@ -1,0 +1,6 @@
+
+sudo apt-get install python-setuptools
+
+sudo easy_install python_chess
+
+sudo easy_install Pillow

@@ -1,0 +1,6 @@
+X2,YesAlt,NoBar,NoFri,YesHun,Full,$,NoRain,NoRes,Thai,30-60,No
+X4,YesAlt,NoBar,YesFri,YesHun,Full,$,YesRain,NoRes,Thai,10-30,Yes
+X5,YesAlt,NoBar,YesFri,NoHun,Full,$$$,NoRain,YesRes,French,>60,No
+X9,NoAlt,YesBar,YesFri,NoHun,Full,$,NoRain,NoRes,Burger,>60,No
+X10,YesAlt,YesBar,YesFri,YesHun,Full,$$$,NoRain,YesRes,Italian,10-30,No
+X12,YesAlt,YesBar,YesFri,YesHun,Full,$,NoRain,NoRes,Burger,30-60,Yes
