@@ -1,0 +1,1 @@
+forever start --spinSleepTime 100 Server/app.js

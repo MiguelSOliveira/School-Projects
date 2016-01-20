@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "use up201304192; delete from Users;" | mysql -u root

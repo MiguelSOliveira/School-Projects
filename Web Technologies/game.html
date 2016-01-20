@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles/gamePage.css">
+    <link rel="stylesheet" type="text/css" href="styles/loginPage.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" type="text/css" href="external-lib/sweetalert-master/dist/sweetalert.css">
+    <script src="external-lib/jquery/jquery-2.1.4.min.js"></script>
+    <script src="external-lib/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script src="javascript/minescript.js"></script>
+    <script src="javascript/query.js"></script>
+    <title>MineSweeper</title>
+  </head>
+  <body>
+    <h1>MineSweeper</h1>
+    <div id="dificultyPage">
+      <form>
+        <h1>Log In</h1>
+        <div class="inset">
+        <p>
+          <label for="username">EMAIL ADDRESS</label>
+          <input type="text" id="username" autocomplete="off" placeholder="Username" autofocus="autofocus" value="YoMama">
+        </p>
+        <p>
+          <label for="password">PASSWORD</label>
+          <input type="password" id="password" autocomplete="off" placeholder="Password" value="YoDaddy">
+        </p>
+        <p>
+          <label for="group">GROUP</label>
+          <input type="text" id="group" autocomplete="off" value="40" placeholder="Leave blank if registering.">
+        </p>
+        <p>
+          <label for="multiplayer">MULTIPLAYER</label>
+          <input type="checkbox" id="multiplayer" checked="checked" name="check">
+          <span></span>
+        </p>
+        <div id="choices">
+          <label>DIFICULTY</label><p style = padding-bottom:5px; ></p>
+          <input type="radio" name="emoticon" id="dealwithit" checked="checked" />
+          <label for="dealwithit"><img class="dificultyButton yellow" src="resources/dealwithit.png" alt="Easy"></label>
+
+          <input type="radio" name="emoticon" id="waitwhat" />
+          <label for="waitwhat"><img class="dificultyButton" src="resources/waitwhat.png" alt="Medium"></label>
+
+          <input type="radio" name="emoticon" id="ohno" />
+          <label for="ohno"><img class="dificultyButton" src="resources/ohno.png" alt="Hard"></label>
+        </div>
+        </div>
+        <p class="p-container">
+          <input type="button" id="submitButton" value="Play Game" onclick="getDificulty()">
+        </p>
+      </form>
+    </div>
+    <div id="gamePage">
+      <div id="containerScore">
+        <div>
+          <img id="clockImg" src="resources/clock.png" alt="Time">
+        </div>
+        <div id="timer">00:00</div>
+      </div>
+      <div id="containerFlags">
+        <img id="flagImg" src="resources/flag.png" alt="Flags">
+        <p id="clicks"></p>
+      </div>
+
+      <div id="containerFlagsMP">
+        <div>
+          <img id="enemyBombImg" src="resources/bomb_enemy.png" alt="EnemyBombs">
+        </div>
+        <div id="enemyBombNumber"></div>
+      </div>
+      <div id="containerMyBombs">
+        <img id="myBombImg" src="resources/bomb_mine.png" alt="MyBombs">
+        <p id="myBombs"></p>
+      </div>
+      <div id="Turn">
+        <p id="playerTurn"></p>
+      </div>
+
+      <div id="table">
+        <table id="board">
+        </table>
+      </div>
+      <table id="gameOverTable">
+        <tr id="PlayAgainDiv" style = display: hidden>
+          <td id="PlayAgain" onclick="playAgain()">Play Again</td>
+        </tr>
+        <tr>
+          <td id="ScoreBoard">ScoreBoard</td>
+        </tr>
+        <tr id="MyScoreDiv" style = display: hidden>
+          <td id="MyScore">My Score</td>
+        </tr>
+        <tr>
+          <td id="Exit" onclick="ReturnToMenu()">Exit</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

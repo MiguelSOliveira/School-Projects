@@ -1,0 +1,184 @@
+html * {
+   font-family: 'Arvo' !important;
+}
+
+td:hover {
+  background-color: yellow;
+  color: black;
+}
+
+h2 {
+  position: absolute;
+  top: 118px;
+  left: 450px;
+}
+
+td:active { background-color: orange; }
+
+td#Exit:hover, td#PlayAgain:hover, td#ScoreBoard:hover, td#MyScore:hover {
+  background-color: #111111;
+}
+
+label img{
+  border: 5px solid #222222;
+}
+
+div#timer, div#enemyBombNumber {
+  padding-left: 15px;
+  font-size: 80px;
+  text-align: left;
+  margin-left: 25px;
+  position: relative;
+  top: -60px;
+  left: 45px;
+  width: 50px;
+}
+
+img#clockImg, img#enemyBombImg {
+  margin-left: 25px;
+  position: relative;
+  top: 15px;
+  left: -15px;
+  width: 50px;
+  width: 55px;
+  height: auto;
+}
+
+div#containerScore, div#containerFlagsMP {
+  position: absolute;
+  text-shadow: 2px 2px darkgrey;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  border: 5px solid #222222;
+  height: 100px;
+  width: 285px;
+  top: 150px;
+  color: white;
+  background-color: black;
+}
+
+div#containerFlags, div#containerMyBombs, div#Turn {
+  background-color: black;
+  text-shadow: 2px 2px darkgrey;
+  color: white;
+  border-radius: 20px;
+  border: 5px solid #222222;
+  position: absolute;
+  margin-bottom: 10px;
+  top: 260px;
+  padding-top: 20px;
+  height: 90px;
+  width: 285px;
+}
+
+div#Turn {
+  top: 360px;
+}
+
+#playerTurn {
+  padding-left: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+table#gameOverTable {
+  position: absolute;
+  border-radius: 20px;
+  top: 500px;
+  height: 300px;
+  width: 285px;
+}
+
+td#Exit, td#PlayAgain, td#ScoreBoard, td#MyScore {
+  padding:10px 20px;
+  text-shadow:0 -1px 0 rgba(0,0,0,0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 10px 10px rgba(255,255,255,0.1);
+  border-radius:5px;
+  border: 5px solid #222222;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  text-shadow: 1px 1px darkgrey;
+  font-size:30px;
+}
+
+img#flagImg, img#myBombImg {
+  margin-left: 25px;
+  position: relative;
+  top: -10px;
+  left: -10px;
+  width: 55px;
+  height: auto;
+}
+
+p#clicks, p#myBombs {
+  padding-left: 15px;
+  font-size: 80px;
+  text-align: left;
+  margin-left: 25px;
+  position: absolute;
+  top: -7px;
+  left: 45px;
+  width: 50px;
+}
+
+div#table.e3 {
+  position: absolute;
+  left: 290px;
+}
+
+div#table.e2 {
+  position: absolute;
+  left: 590px;
+}
+
+div#table.e1 {
+  position: absolute;
+  left: 500px;
+  top: 200px;
+}
+
+td {
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: black;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+table { margin: -40px auto; }
+
+img.bomb, img.flag, img.question {
+  width: 24px;
+  height: 24px;
+}
+
+#bombMe, #bombEnemy {
+  padding-top: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+body { background-color: #4E4E4E; cursor: default; }
+
+h1 {
+  box-shadow: 5px 5px 5px #151515;
+  width: 70%;
+  text-shadow: 2px 2px darkgrey;
+  margin: -25px auto 70px auto;
+  border-radius: 20px;
+  background:#111;
+  color: white;
+  text-align: center;
+  font-size: 90px;
+  padding-top: 18px;
+  padding-bottom: 8px;
+}
