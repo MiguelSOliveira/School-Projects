@@ -1,0 +1,3174 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> main
+Rule 1     main -> MAIN init RBRACK
+Rule 2     main -> VOID MAIN init RBRACK
+Rule 3     main -> INT MAIN init RBRACK
+Rule 4     init -> cond init
+Rule 5     init -> declare init
+Rule 6     init -> atrib init
+Rule 7     init -> loop init
+Rule 8     init -> return init
+Rule 9     cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+Rule 10    cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK
+Rule 11    cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+Rule 12    cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+Rule 13    cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+Rule 14    cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+Rule 15    loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+Rule 16    loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+Rule 17    loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+Rule 18    statement -> aritm LESSEQUAL aritm
+Rule 19    statement -> aritm GREATEREQUAL aritm
+Rule 20    statement -> aritm LESSTHAN aritm
+Rule 21    statement -> aritm GREATERTHAN aritm
+Rule 22    statement -> aritm EQUALS aritm
+Rule 23    statement -> aritm NOTEQUALS aritm
+Rule 24    statement -> atrib
+Rule 25    statement -> BOOLEAN
+Rule 26    bool_exp -> bool_exp AND bool_exp
+Rule 27    bool_exp -> bool_exp OR bool_exp
+Rule 28    bool_exp -> LPAREN bool_exp RPAREN
+Rule 29    bool_exp -> NOT LPAREN statement RPAREN
+Rule 30    bool_exp -> statement
+Rule 31    aritm -> VAR
+Rule 32    aritm -> NUMBER
+Rule 33    aritm -> LPAREN aritm RPAREN
+Rule 34    aritm -> aritm PLUS aritm
+Rule 35    aritm -> aritm MINUS aritm
+Rule 36    aritm -> aritm TIMES aritm
+Rule 37    aritm -> aritm DIVIDE aritm
+Rule 38    atrib -> VAR ASSIGN aritm SEMICOLON
+Rule 39    atrib -> VAR ASSIGN aritm RPAREN
+Rule 40    atrib -> VAR ASSIGN bool_exp SEMICOLON
+Rule 41    atrib -> VAR ASSIGN bool_exp RPAREN
+Rule 42    declare -> INT VAR ASSIGN aritm SEMICOLON
+Rule 43    declare -> BOOL VAR ASSIGN bool_exp SEMICOLON
+Rule 44    declare -> INT VAR ASSIGN aritm COMMA declare_same_line
+Rule 45    declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+Rule 46    declare -> INT VAR SEMICOLON
+Rule 47    declare -> BOOL VAR SEMICOLON
+Rule 48    declare -> INT VAR COMMA declare_same_line
+Rule 49    declare -> BOOL VAR COMMA declare_same_line
+Rule 50    declare_same_line -> VAR COMMA declare_same_line
+Rule 51    declare_same_line -> VAR SEMICOLON
+Rule 52    declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line
+Rule 53    declare_same_line -> VAR ASSIGN aritm SEMICOLON
+Rule 54    declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line
+Rule 55    declare_same_line -> VAR ASSIGN bool_exp SEMICOLON
+Rule 56    return -> RETURN aritm SEMICOLON
+Rule 57    return -> RETURN BOOLEAN SEMICOLON
+Rule 58    init -> empty
+Rule 59    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 26
+ASSIGN               : 38 39 40 41 42 43 44 45 52 53 54 55
+BOOL                 : 43 45 47 49
+BOOLEAN              : 25 57
+COMMA                : 44 45 48 49 50 52 54
+DIVIDE               : 37
+ELSE                 : 12 13 14
+EQUALS               : 22
+GREATEREQUAL         : 19
+GREATERTHAN          : 21
+IF                   : 9 10 11 12 13 14
+INT                  : 3 42 44 46 48
+LBRACK               : 9 10 11 12 12 13 13 14 14 15 16 17
+LESSEQUAL            : 18
+LESSTHAN             : 20
+LPAREN               : 9 10 11 12 13 14 15 16 17 28 29 33
+MAIN                 : 1 2 3
+MINUS                : 35
+NOT                  : 29
+NOTEQUALS            : 23
+NUMBER               : 11 14 17 32
+OR                   : 27
+PLUS                 : 34
+RBRACK               : 1 2 3 9 10 11 12 12 13 13 14 14 15 16 17
+RETURN               : 56 57
+RPAREN               : 9 10 11 12 13 14 15 16 17 28 29 33 39 41
+SEMICOLON            : 38 40 42 43 46 47 51 53 55 56 57
+TIMES                : 36
+VAR                  : 10 13 16 31 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55
+VOID                 : 2
+WHILE                : 15 16 17
+error                : 
+
+Nonterminals, with rules where they appear
+
+aritm                : 18 18 19 19 20 20 21 21 22 22 23 23 33 34 34 35 35 36 36 37 37 38 39 42 44 52 53 56
+atrib                : 6 24
+bool_exp             : 9 12 15 26 26 27 27 28 40 41 43 45 54 55
+cond                 : 4
+declare              : 5
+declare_same_line    : 44 45 48 49 50 52 54
+empty                : 58
+init                 : 1 2 3 4 5 6 7 8 9 10 11 12 12 13 13 14 14 15 16 17
+loop                 : 7
+main                 : 0
+return               : 8
+statement            : 29 30
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . main
+    (1) main -> . MAIN init RBRACK
+    (2) main -> . VOID MAIN init RBRACK
+    (3) main -> . INT MAIN init RBRACK
+
+    MAIN            shift and go to state 1
+    VOID            shift and go to state 3
+    INT             shift and go to state 2
+
+    main                           shift and go to state 4
+
+state 1
+
+    (1) main -> MAIN . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 9
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 2
+
+    (3) main -> INT . MAIN init RBRACK
+
+    MAIN            shift and go to state 18
+
+
+state 3
+
+    (2) main -> VOID . MAIN init RBRACK
+
+    MAIN            shift and go to state 19
+
+
+state 4
+
+    (0) S' -> main .
+
+
+
+state 5
+
+    (6) init -> atrib . init
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 20
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 6
+
+    (56) return -> RETURN . aritm SEMICOLON
+    (57) return -> RETURN . BOOLEAN SEMICOLON
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    BOOLEAN         shift and go to state 23
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 21
+
+state 7
+
+    (15) loop -> WHILE . LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> WHILE . LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> WHILE . LPAREN NUMBER RPAREN LBRACK init RBRACK
+
+    LPAREN          shift and go to state 26
+
+
+state 8
+
+    (4) init -> cond . init
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 27
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 9
+
+    (1) main -> MAIN init . RBRACK
+
+    RBRACK          shift and go to state 28
+
+
+state 10
+
+    (58) init -> empty .
+
+    RBRACK          reduce using rule 58 (init -> empty .)
+
+
+state 11
+
+    (8) init -> return . init
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 29
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 12
+
+    (38) atrib -> VAR . ASSIGN aritm SEMICOLON
+    (39) atrib -> VAR . ASSIGN aritm RPAREN
+    (40) atrib -> VAR . ASSIGN bool_exp SEMICOLON
+    (41) atrib -> VAR . ASSIGN bool_exp RPAREN
+
+    ASSIGN          shift and go to state 30
+
+
+state 13
+
+    (9) cond -> IF . LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> IF . LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> IF . LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> IF . LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> IF . LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> IF . LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+
+    LPAREN          shift and go to state 31
+
+
+state 14
+
+    (42) declare -> INT . VAR ASSIGN aritm SEMICOLON
+    (44) declare -> INT . VAR ASSIGN aritm COMMA declare_same_line
+    (46) declare -> INT . VAR SEMICOLON
+    (48) declare -> INT . VAR COMMA declare_same_line
+
+    VAR             shift and go to state 32
+
+
+state 15
+
+    (43) declare -> BOOL . VAR ASSIGN bool_exp SEMICOLON
+    (45) declare -> BOOL . VAR ASSIGN bool_exp COMMA declare_same_line
+    (47) declare -> BOOL . VAR SEMICOLON
+    (49) declare -> BOOL . VAR COMMA declare_same_line
+
+    VAR             shift and go to state 33
+
+
+state 16
+
+    (5) init -> declare . init
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 34
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 17
+
+    (7) init -> loop . init
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 35
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 18
+
+    (3) main -> INT MAIN . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 36
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 19
+
+    (2) main -> VOID MAIN . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 37
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 20
+
+    (6) init -> atrib init .
+
+    RBRACK          reduce using rule 6 (init -> atrib init .)
+
+
+state 21
+
+    (56) return -> RETURN aritm . SEMICOLON
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    SEMICOLON       shift and go to state 38
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 22
+
+    (32) aritm -> NUMBER .
+
+    PLUS            reduce using rule 32 (aritm -> NUMBER .)
+    MINUS           reduce using rule 32 (aritm -> NUMBER .)
+    TIMES           reduce using rule 32 (aritm -> NUMBER .)
+    DIVIDE          reduce using rule 32 (aritm -> NUMBER .)
+    RPAREN          reduce using rule 32 (aritm -> NUMBER .)
+    AND             reduce using rule 32 (aritm -> NUMBER .)
+    OR              reduce using rule 32 (aritm -> NUMBER .)
+    SEMICOLON       reduce using rule 32 (aritm -> NUMBER .)
+    COMMA           reduce using rule 32 (aritm -> NUMBER .)
+    LESSEQUAL       reduce using rule 32 (aritm -> NUMBER .)
+    GREATEREQUAL    reduce using rule 32 (aritm -> NUMBER .)
+    LESSTHAN        reduce using rule 32 (aritm -> NUMBER .)
+    GREATERTHAN     reduce using rule 32 (aritm -> NUMBER .)
+    EQUALS          reduce using rule 32 (aritm -> NUMBER .)
+    NOTEQUALS       reduce using rule 32 (aritm -> NUMBER .)
+
+
+state 23
+
+    (57) return -> RETURN BOOLEAN . SEMICOLON
+
+    SEMICOLON       shift and go to state 43
+
+
+state 24
+
+    (33) aritm -> LPAREN . aritm RPAREN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 44
+
+state 25
+
+    (31) aritm -> VAR .
+
+    PLUS            reduce using rule 31 (aritm -> VAR .)
+    MINUS           reduce using rule 31 (aritm -> VAR .)
+    TIMES           reduce using rule 31 (aritm -> VAR .)
+    DIVIDE          reduce using rule 31 (aritm -> VAR .)
+    RPAREN          reduce using rule 31 (aritm -> VAR .)
+    AND             reduce using rule 31 (aritm -> VAR .)
+    OR              reduce using rule 31 (aritm -> VAR .)
+    SEMICOLON       reduce using rule 31 (aritm -> VAR .)
+    COMMA           reduce using rule 31 (aritm -> VAR .)
+    LESSEQUAL       reduce using rule 31 (aritm -> VAR .)
+    GREATEREQUAL    reduce using rule 31 (aritm -> VAR .)
+    LESSTHAN        reduce using rule 31 (aritm -> VAR .)
+    GREATERTHAN     reduce using rule 31 (aritm -> VAR .)
+    EQUALS          reduce using rule 31 (aritm -> VAR .)
+    NOTEQUALS       reduce using rule 31 (aritm -> VAR .)
+
+
+state 26
+
+    (15) loop -> WHILE LPAREN . bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> WHILE LPAREN . VAR RPAREN LBRACK init RBRACK
+    (17) loop -> WHILE LPAREN . NUMBER RPAREN LBRACK init RBRACK
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    VAR             shift and go to state 51
+    NUMBER          shift and go to state 46
+    LPAREN          shift and go to state 50
+    NOT             shift and go to state 53
+    BOOLEAN         shift and go to state 52
+
+    bool_exp                       shift and go to state 47
+    atrib                          shift and go to state 45
+    aritm                          shift and go to state 49
+    statement                      shift and go to state 48
+
+state 27
+
+    (4) init -> cond init .
+
+    RBRACK          reduce using rule 4 (init -> cond init .)
+
+
+state 28
+
+    (1) main -> MAIN init RBRACK .
+
+    $end            reduce using rule 1 (main -> MAIN init RBRACK .)
+
+
+state 29
+
+    (8) init -> return init .
+
+    RBRACK          reduce using rule 8 (init -> return init .)
+
+
+state 30
+
+    (38) atrib -> VAR ASSIGN . aritm SEMICOLON
+    (39) atrib -> VAR ASSIGN . aritm RPAREN
+    (40) atrib -> VAR ASSIGN . bool_exp SEMICOLON
+    (41) atrib -> VAR ASSIGN . bool_exp RPAREN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    VAR             shift and go to state 57
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 56
+    NOT             shift and go to state 53
+    BOOLEAN         shift and go to state 52
+
+    bool_exp                       shift and go to state 54
+    atrib                          shift and go to state 45
+    statement                      shift and go to state 48
+    aritm                          shift and go to state 55
+
+state 31
+
+    (9) cond -> IF LPAREN . bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> IF LPAREN . VAR RPAREN LBRACK init RBRACK
+    (11) cond -> IF LPAREN . NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> IF LPAREN . bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> IF LPAREN . VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> IF LPAREN . NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    VAR             shift and go to state 60
+    NUMBER          shift and go to state 58
+    LPAREN          shift and go to state 50
+    NOT             shift and go to state 53
+    BOOLEAN         shift and go to state 52
+
+    bool_exp                       shift and go to state 59
+    atrib                          shift and go to state 45
+    aritm                          shift and go to state 49
+    statement                      shift and go to state 48
+
+state 32
+
+    (42) declare -> INT VAR . ASSIGN aritm SEMICOLON
+    (44) declare -> INT VAR . ASSIGN aritm COMMA declare_same_line
+    (46) declare -> INT VAR . SEMICOLON
+    (48) declare -> INT VAR . COMMA declare_same_line
+
+    ASSIGN          shift and go to state 63
+    SEMICOLON       shift and go to state 61
+    COMMA           shift and go to state 62
+
+
+state 33
+
+    (43) declare -> BOOL VAR . ASSIGN bool_exp SEMICOLON
+    (45) declare -> BOOL VAR . ASSIGN bool_exp COMMA declare_same_line
+    (47) declare -> BOOL VAR . SEMICOLON
+    (49) declare -> BOOL VAR . COMMA declare_same_line
+
+    ASSIGN          shift and go to state 66
+    SEMICOLON       shift and go to state 64
+    COMMA           shift and go to state 65
+
+
+state 34
+
+    (5) init -> declare init .
+
+    RBRACK          reduce using rule 5 (init -> declare init .)
+
+
+state 35
+
+    (7) init -> loop init .
+
+    RBRACK          reduce using rule 7 (init -> loop init .)
+
+
+state 36
+
+    (3) main -> INT MAIN init . RBRACK
+
+    RBRACK          shift and go to state 67
+
+
+state 37
+
+    (2) main -> VOID MAIN init . RBRACK
+
+    RBRACK          shift and go to state 68
+
+
+state 38
+
+    (56) return -> RETURN aritm SEMICOLON .
+
+    IF              reduce using rule 56 (return -> RETURN aritm SEMICOLON .)
+    INT             reduce using rule 56 (return -> RETURN aritm SEMICOLON .)
+    BOOL            reduce using rule 56 (return -> RETURN aritm SEMICOLON .)
+    VAR             reduce using rule 56 (return -> RETURN aritm SEMICOLON .)
+    WHILE           reduce using rule 56 (return -> RETURN aritm SEMICOLON .)
+    RETURN          reduce using rule 56 (return -> RETURN aritm SEMICOLON .)
+    RBRACK          reduce using rule 56 (return -> RETURN aritm SEMICOLON .)
+
+
+state 39
+
+    (36) aritm -> aritm TIMES . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 69
+
+state 40
+
+    (34) aritm -> aritm PLUS . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 70
+
+state 41
+
+    (35) aritm -> aritm MINUS . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 71
+
+state 42
+
+    (37) aritm -> aritm DIVIDE . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 72
+
+state 43
+
+    (57) return -> RETURN BOOLEAN SEMICOLON .
+
+    IF              reduce using rule 57 (return -> RETURN BOOLEAN SEMICOLON .)
+    INT             reduce using rule 57 (return -> RETURN BOOLEAN SEMICOLON .)
+    BOOL            reduce using rule 57 (return -> RETURN BOOLEAN SEMICOLON .)
+    VAR             reduce using rule 57 (return -> RETURN BOOLEAN SEMICOLON .)
+    WHILE           reduce using rule 57 (return -> RETURN BOOLEAN SEMICOLON .)
+    RETURN          reduce using rule 57 (return -> RETURN BOOLEAN SEMICOLON .)
+    RBRACK          reduce using rule 57 (return -> RETURN BOOLEAN SEMICOLON .)
+
+
+state 44
+
+    (33) aritm -> LPAREN aritm . RPAREN
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    RPAREN          shift and go to state 73
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 45
+
+    (24) statement -> atrib .
+
+    SEMICOLON       reduce using rule 24 (statement -> atrib .)
+    COMMA           reduce using rule 24 (statement -> atrib .)
+    AND             reduce using rule 24 (statement -> atrib .)
+    OR              reduce using rule 24 (statement -> atrib .)
+    RPAREN          reduce using rule 24 (statement -> atrib .)
+
+
+state 46
+
+    (17) loop -> WHILE LPAREN NUMBER . RPAREN LBRACK init RBRACK
+    (32) aritm -> NUMBER .
+
+    RPAREN          shift and go to state 74
+    LESSEQUAL       reduce using rule 32 (aritm -> NUMBER .)
+    GREATEREQUAL    reduce using rule 32 (aritm -> NUMBER .)
+    LESSTHAN        reduce using rule 32 (aritm -> NUMBER .)
+    GREATERTHAN     reduce using rule 32 (aritm -> NUMBER .)
+    EQUALS          reduce using rule 32 (aritm -> NUMBER .)
+    NOTEQUALS       reduce using rule 32 (aritm -> NUMBER .)
+    PLUS            reduce using rule 32 (aritm -> NUMBER .)
+    MINUS           reduce using rule 32 (aritm -> NUMBER .)
+    TIMES           reduce using rule 32 (aritm -> NUMBER .)
+    DIVIDE          reduce using rule 32 (aritm -> NUMBER .)
+
+
+state 47
+
+    (15) loop -> WHILE LPAREN bool_exp . RPAREN LBRACK init RBRACK
+    (26) bool_exp -> bool_exp . AND bool_exp
+    (27) bool_exp -> bool_exp . OR bool_exp
+
+    RPAREN          shift and go to state 76
+    AND             shift and go to state 75
+    OR              shift and go to state 77
+
+
+state 48
+
+    (30) bool_exp -> statement .
+
+    COMMA           reduce using rule 30 (bool_exp -> statement .)
+    SEMICOLON       reduce using rule 30 (bool_exp -> statement .)
+    AND             reduce using rule 30 (bool_exp -> statement .)
+    OR              reduce using rule 30 (bool_exp -> statement .)
+    RPAREN          reduce using rule 30 (bool_exp -> statement .)
+
+
+state 49
+
+    (18) statement -> aritm . LESSEQUAL aritm
+    (19) statement -> aritm . GREATEREQUAL aritm
+    (20) statement -> aritm . LESSTHAN aritm
+    (21) statement -> aritm . GREATERTHAN aritm
+    (22) statement -> aritm . EQUALS aritm
+    (23) statement -> aritm . NOTEQUALS aritm
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    LESSEQUAL       shift and go to state 83
+    GREATEREQUAL    shift and go to state 79
+    LESSTHAN        shift and go to state 81
+    GREATERTHAN     shift and go to state 82
+    EQUALS          shift and go to state 80
+    NOTEQUALS       shift and go to state 78
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 50
+
+    (28) bool_exp -> LPAREN . bool_exp RPAREN
+    (33) aritm -> LPAREN . aritm RPAREN
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    LPAREN          shift and go to state 50
+    NOT             shift and go to state 53
+    VAR             shift and go to state 57
+    NUMBER          shift and go to state 22
+    BOOLEAN         shift and go to state 52
+
+    bool_exp                       shift and go to state 84
+    atrib                          shift and go to state 45
+    statement                      shift and go to state 48
+    aritm                          shift and go to state 85
+
+state 51
+
+    (16) loop -> WHILE LPAREN VAR . RPAREN LBRACK init RBRACK
+    (31) aritm -> VAR .
+    (38) atrib -> VAR . ASSIGN aritm SEMICOLON
+    (39) atrib -> VAR . ASSIGN aritm RPAREN
+    (40) atrib -> VAR . ASSIGN bool_exp SEMICOLON
+    (41) atrib -> VAR . ASSIGN bool_exp RPAREN
+
+    RPAREN          shift and go to state 86
+    LESSEQUAL       reduce using rule 31 (aritm -> VAR .)
+    GREATEREQUAL    reduce using rule 31 (aritm -> VAR .)
+    LESSTHAN        reduce using rule 31 (aritm -> VAR .)
+    GREATERTHAN     reduce using rule 31 (aritm -> VAR .)
+    EQUALS          reduce using rule 31 (aritm -> VAR .)
+    NOTEQUALS       reduce using rule 31 (aritm -> VAR .)
+    PLUS            reduce using rule 31 (aritm -> VAR .)
+    MINUS           reduce using rule 31 (aritm -> VAR .)
+    TIMES           reduce using rule 31 (aritm -> VAR .)
+    DIVIDE          reduce using rule 31 (aritm -> VAR .)
+    ASSIGN          shift and go to state 30
+
+
+state 52
+
+    (25) statement -> BOOLEAN .
+
+    SEMICOLON       reduce using rule 25 (statement -> BOOLEAN .)
+    COMMA           reduce using rule 25 (statement -> BOOLEAN .)
+    AND             reduce using rule 25 (statement -> BOOLEAN .)
+    OR              reduce using rule 25 (statement -> BOOLEAN .)
+    RPAREN          reduce using rule 25 (statement -> BOOLEAN .)
+
+
+state 53
+
+    (29) bool_exp -> NOT . LPAREN statement RPAREN
+
+    LPAREN          shift and go to state 87
+
+
+state 54
+
+    (40) atrib -> VAR ASSIGN bool_exp . SEMICOLON
+    (41) atrib -> VAR ASSIGN bool_exp . RPAREN
+    (26) bool_exp -> bool_exp . AND bool_exp
+    (27) bool_exp -> bool_exp . OR bool_exp
+
+    SEMICOLON       shift and go to state 89
+    RPAREN          shift and go to state 88
+    AND             shift and go to state 75
+    OR              shift and go to state 77
+
+
+state 55
+
+    (38) atrib -> VAR ASSIGN aritm . SEMICOLON
+    (39) atrib -> VAR ASSIGN aritm . RPAREN
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+    (18) statement -> aritm . LESSEQUAL aritm
+    (19) statement -> aritm . GREATEREQUAL aritm
+    (20) statement -> aritm . LESSTHAN aritm
+    (21) statement -> aritm . GREATERTHAN aritm
+    (22) statement -> aritm . EQUALS aritm
+    (23) statement -> aritm . NOTEQUALS aritm
+
+    SEMICOLON       shift and go to state 91
+    RPAREN          shift and go to state 90
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+    LESSEQUAL       shift and go to state 83
+    GREATEREQUAL    shift and go to state 79
+    LESSTHAN        shift and go to state 81
+    GREATERTHAN     shift and go to state 82
+    EQUALS          shift and go to state 80
+    NOTEQUALS       shift and go to state 78
+
+
+state 56
+
+    (33) aritm -> LPAREN . aritm RPAREN
+    (28) bool_exp -> LPAREN . bool_exp RPAREN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    VAR             shift and go to state 57
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 56
+    NOT             shift and go to state 53
+    BOOLEAN         shift and go to state 52
+
+    bool_exp                       shift and go to state 84
+    atrib                          shift and go to state 45
+    statement                      shift and go to state 48
+    aritm                          shift and go to state 85
+
+state 57
+
+    (31) aritm -> VAR .
+    (38) atrib -> VAR . ASSIGN aritm SEMICOLON
+    (39) atrib -> VAR . ASSIGN aritm RPAREN
+    (40) atrib -> VAR . ASSIGN bool_exp SEMICOLON
+    (41) atrib -> VAR . ASSIGN bool_exp RPAREN
+
+    RPAREN          reduce using rule 31 (aritm -> VAR .)
+    PLUS            reduce using rule 31 (aritm -> VAR .)
+    MINUS           reduce using rule 31 (aritm -> VAR .)
+    TIMES           reduce using rule 31 (aritm -> VAR .)
+    DIVIDE          reduce using rule 31 (aritm -> VAR .)
+    LESSEQUAL       reduce using rule 31 (aritm -> VAR .)
+    GREATEREQUAL    reduce using rule 31 (aritm -> VAR .)
+    LESSTHAN        reduce using rule 31 (aritm -> VAR .)
+    GREATERTHAN     reduce using rule 31 (aritm -> VAR .)
+    EQUALS          reduce using rule 31 (aritm -> VAR .)
+    NOTEQUALS       reduce using rule 31 (aritm -> VAR .)
+    SEMICOLON       reduce using rule 31 (aritm -> VAR .)
+    COMMA           reduce using rule 31 (aritm -> VAR .)
+    ASSIGN          shift and go to state 30
+
+
+state 58
+
+    (11) cond -> IF LPAREN NUMBER . RPAREN LBRACK init RBRACK
+    (14) cond -> IF LPAREN NUMBER . RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (32) aritm -> NUMBER .
+
+    RPAREN          shift and go to state 92
+    LESSEQUAL       reduce using rule 32 (aritm -> NUMBER .)
+    GREATEREQUAL    reduce using rule 32 (aritm -> NUMBER .)
+    LESSTHAN        reduce using rule 32 (aritm -> NUMBER .)
+    GREATERTHAN     reduce using rule 32 (aritm -> NUMBER .)
+    EQUALS          reduce using rule 32 (aritm -> NUMBER .)
+    NOTEQUALS       reduce using rule 32 (aritm -> NUMBER .)
+    PLUS            reduce using rule 32 (aritm -> NUMBER .)
+    MINUS           reduce using rule 32 (aritm -> NUMBER .)
+    TIMES           reduce using rule 32 (aritm -> NUMBER .)
+    DIVIDE          reduce using rule 32 (aritm -> NUMBER .)
+
+
+state 59
+
+    (9) cond -> IF LPAREN bool_exp . RPAREN LBRACK init RBRACK
+    (12) cond -> IF LPAREN bool_exp . RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (26) bool_exp -> bool_exp . AND bool_exp
+    (27) bool_exp -> bool_exp . OR bool_exp
+
+    RPAREN          shift and go to state 93
+    AND             shift and go to state 75
+    OR              shift and go to state 77
+
+
+state 60
+
+    (10) cond -> IF LPAREN VAR . RPAREN LBRACK init RBRACK
+    (13) cond -> IF LPAREN VAR . RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (31) aritm -> VAR .
+    (38) atrib -> VAR . ASSIGN aritm SEMICOLON
+    (39) atrib -> VAR . ASSIGN aritm RPAREN
+    (40) atrib -> VAR . ASSIGN bool_exp SEMICOLON
+    (41) atrib -> VAR . ASSIGN bool_exp RPAREN
+
+    RPAREN          shift and go to state 94
+    LESSEQUAL       reduce using rule 31 (aritm -> VAR .)
+    GREATEREQUAL    reduce using rule 31 (aritm -> VAR .)
+    LESSTHAN        reduce using rule 31 (aritm -> VAR .)
+    GREATERTHAN     reduce using rule 31 (aritm -> VAR .)
+    EQUALS          reduce using rule 31 (aritm -> VAR .)
+    NOTEQUALS       reduce using rule 31 (aritm -> VAR .)
+    PLUS            reduce using rule 31 (aritm -> VAR .)
+    MINUS           reduce using rule 31 (aritm -> VAR .)
+    TIMES           reduce using rule 31 (aritm -> VAR .)
+    DIVIDE          reduce using rule 31 (aritm -> VAR .)
+    ASSIGN          shift and go to state 30
+
+
+state 61
+
+    (46) declare -> INT VAR SEMICOLON .
+
+    IF              reduce using rule 46 (declare -> INT VAR SEMICOLON .)
+    INT             reduce using rule 46 (declare -> INT VAR SEMICOLON .)
+    BOOL            reduce using rule 46 (declare -> INT VAR SEMICOLON .)
+    VAR             reduce using rule 46 (declare -> INT VAR SEMICOLON .)
+    WHILE           reduce using rule 46 (declare -> INT VAR SEMICOLON .)
+    RETURN          reduce using rule 46 (declare -> INT VAR SEMICOLON .)
+    RBRACK          reduce using rule 46 (declare -> INT VAR SEMICOLON .)
+
+
+state 62
+
+    (48) declare -> INT VAR COMMA . declare_same_line
+    (50) declare_same_line -> . VAR COMMA declare_same_line
+    (51) declare_same_line -> . VAR SEMICOLON
+    (52) declare_same_line -> . VAR ASSIGN aritm COMMA declare_same_line
+    (53) declare_same_line -> . VAR ASSIGN aritm SEMICOLON
+    (54) declare_same_line -> . VAR ASSIGN bool_exp COMMA declare_same_line
+    (55) declare_same_line -> . VAR ASSIGN bool_exp SEMICOLON
+
+    VAR             shift and go to state 96
+
+    declare_same_line              shift and go to state 95
+
+state 63
+
+    (42) declare -> INT VAR ASSIGN . aritm SEMICOLON
+    (44) declare -> INT VAR ASSIGN . aritm COMMA declare_same_line
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 97
+
+state 64
+
+    (47) declare -> BOOL VAR SEMICOLON .
+
+    IF              reduce using rule 47 (declare -> BOOL VAR SEMICOLON .)
+    INT             reduce using rule 47 (declare -> BOOL VAR SEMICOLON .)
+    BOOL            reduce using rule 47 (declare -> BOOL VAR SEMICOLON .)
+    VAR             reduce using rule 47 (declare -> BOOL VAR SEMICOLON .)
+    WHILE           reduce using rule 47 (declare -> BOOL VAR SEMICOLON .)
+    RETURN          reduce using rule 47 (declare -> BOOL VAR SEMICOLON .)
+    RBRACK          reduce using rule 47 (declare -> BOOL VAR SEMICOLON .)
+
+
+state 65
+
+    (49) declare -> BOOL VAR COMMA . declare_same_line
+    (50) declare_same_line -> . VAR COMMA declare_same_line
+    (51) declare_same_line -> . VAR SEMICOLON
+    (52) declare_same_line -> . VAR ASSIGN aritm COMMA declare_same_line
+    (53) declare_same_line -> . VAR ASSIGN aritm SEMICOLON
+    (54) declare_same_line -> . VAR ASSIGN bool_exp COMMA declare_same_line
+    (55) declare_same_line -> . VAR ASSIGN bool_exp SEMICOLON
+
+    VAR             shift and go to state 96
+
+    declare_same_line              shift and go to state 98
+
+state 66
+
+    (43) declare -> BOOL VAR ASSIGN . bool_exp SEMICOLON
+    (45) declare -> BOOL VAR ASSIGN . bool_exp COMMA declare_same_line
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    LPAREN          shift and go to state 50
+    NOT             shift and go to state 53
+    BOOLEAN         shift and go to state 52
+    VAR             shift and go to state 57
+    NUMBER          shift and go to state 22
+
+    bool_exp                       shift and go to state 99
+    atrib                          shift and go to state 45
+    aritm                          shift and go to state 49
+    statement                      shift and go to state 48
+
+state 67
+
+    (3) main -> INT MAIN init RBRACK .
+
+    $end            reduce using rule 3 (main -> INT MAIN init RBRACK .)
+
+
+state 68
+
+    (2) main -> VOID MAIN init RBRACK .
+
+    $end            reduce using rule 2 (main -> VOID MAIN init RBRACK .)
+
+
+state 69
+
+    (36) aritm -> aritm TIMES aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    PLUS            reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    MINUS           reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    TIMES           reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    DIVIDE          reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    RPAREN          reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    AND             reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    OR              reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    SEMICOLON       reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    COMMA           reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    LESSEQUAL       reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    GREATEREQUAL    reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    LESSTHAN        reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    GREATERTHAN     reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    EQUALS          reduce using rule 36 (aritm -> aritm TIMES aritm .)
+    NOTEQUALS       reduce using rule 36 (aritm -> aritm TIMES aritm .)
+
+  ! PLUS            [ shift and go to state 40 ]
+  ! MINUS           [ shift and go to state 41 ]
+  ! TIMES           [ shift and go to state 39 ]
+  ! DIVIDE          [ shift and go to state 42 ]
+
+
+state 70
+
+    (34) aritm -> aritm PLUS aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    PLUS            reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    MINUS           reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    RPAREN          reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    AND             reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    OR              reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    SEMICOLON       reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    COMMA           reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    LESSEQUAL       reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    GREATEREQUAL    reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    LESSTHAN        reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    GREATERTHAN     reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    EQUALS          reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    NOTEQUALS       reduce using rule 34 (aritm -> aritm PLUS aritm .)
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+  ! TIMES           [ reduce using rule 34 (aritm -> aritm PLUS aritm .) ]
+  ! DIVIDE          [ reduce using rule 34 (aritm -> aritm PLUS aritm .) ]
+  ! PLUS            [ shift and go to state 40 ]
+  ! MINUS           [ shift and go to state 41 ]
+
+
+state 71
+
+    (35) aritm -> aritm MINUS aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    PLUS            reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    MINUS           reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    RPAREN          reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    AND             reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    OR              reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    SEMICOLON       reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    COMMA           reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    LESSEQUAL       reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    GREATEREQUAL    reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    LESSTHAN        reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    GREATERTHAN     reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    EQUALS          reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    NOTEQUALS       reduce using rule 35 (aritm -> aritm MINUS aritm .)
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+  ! TIMES           [ reduce using rule 35 (aritm -> aritm MINUS aritm .) ]
+  ! DIVIDE          [ reduce using rule 35 (aritm -> aritm MINUS aritm .) ]
+  ! PLUS            [ shift and go to state 40 ]
+  ! MINUS           [ shift and go to state 41 ]
+
+
+state 72
+
+    (37) aritm -> aritm DIVIDE aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    PLUS            reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    MINUS           reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    TIMES           reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    DIVIDE          reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    RPAREN          reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    AND             reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    OR              reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    SEMICOLON       reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    COMMA           reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    LESSEQUAL       reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    GREATEREQUAL    reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    LESSTHAN        reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    GREATERTHAN     reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    EQUALS          reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+    NOTEQUALS       reduce using rule 37 (aritm -> aritm DIVIDE aritm .)
+
+  ! PLUS            [ shift and go to state 40 ]
+  ! MINUS           [ shift and go to state 41 ]
+  ! TIMES           [ shift and go to state 39 ]
+  ! DIVIDE          [ shift and go to state 42 ]
+
+
+state 73
+
+    (33) aritm -> LPAREN aritm RPAREN .
+
+    PLUS            reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    MINUS           reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    TIMES           reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    DIVIDE          reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    RPAREN          reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    AND             reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    OR              reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    SEMICOLON       reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    COMMA           reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    LESSEQUAL       reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    GREATEREQUAL    reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    LESSTHAN        reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    GREATERTHAN     reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    EQUALS          reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+    NOTEQUALS       reduce using rule 33 (aritm -> LPAREN aritm RPAREN .)
+
+
+state 74
+
+    (17) loop -> WHILE LPAREN NUMBER RPAREN . LBRACK init RBRACK
+
+    LBRACK          shift and go to state 100
+
+
+state 75
+
+    (26) bool_exp -> bool_exp AND . bool_exp
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    LPAREN          shift and go to state 50
+    NOT             shift and go to state 53
+    BOOLEAN         shift and go to state 52
+    VAR             shift and go to state 57
+    NUMBER          shift and go to state 22
+
+    bool_exp                       shift and go to state 101
+    atrib                          shift and go to state 45
+    aritm                          shift and go to state 49
+    statement                      shift and go to state 48
+
+state 76
+
+    (15) loop -> WHILE LPAREN bool_exp RPAREN . LBRACK init RBRACK
+
+    LBRACK          shift and go to state 102
+
+
+state 77
+
+    (27) bool_exp -> bool_exp OR . bool_exp
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    LPAREN          shift and go to state 50
+    NOT             shift and go to state 53
+    BOOLEAN         shift and go to state 52
+    VAR             shift and go to state 57
+    NUMBER          shift and go to state 22
+
+    bool_exp                       shift and go to state 103
+    atrib                          shift and go to state 45
+    aritm                          shift and go to state 49
+    statement                      shift and go to state 48
+
+state 78
+
+    (23) statement -> aritm NOTEQUALS . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 104
+
+state 79
+
+    (19) statement -> aritm GREATEREQUAL . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 105
+
+state 80
+
+    (22) statement -> aritm EQUALS . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 106
+
+state 81
+
+    (20) statement -> aritm LESSTHAN . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 107
+
+state 82
+
+    (21) statement -> aritm GREATERTHAN . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 108
+
+state 83
+
+    (18) statement -> aritm LESSEQUAL . aritm
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+
+    VAR             shift and go to state 25
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    aritm                          shift and go to state 109
+
+state 84
+
+    (28) bool_exp -> LPAREN bool_exp . RPAREN
+    (26) bool_exp -> bool_exp . AND bool_exp
+    (27) bool_exp -> bool_exp . OR bool_exp
+
+    RPAREN          shift and go to state 110
+    AND             shift and go to state 75
+    OR              shift and go to state 77
+
+
+state 85
+
+    (33) aritm -> LPAREN aritm . RPAREN
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+    (18) statement -> aritm . LESSEQUAL aritm
+    (19) statement -> aritm . GREATEREQUAL aritm
+    (20) statement -> aritm . LESSTHAN aritm
+    (21) statement -> aritm . GREATERTHAN aritm
+    (22) statement -> aritm . EQUALS aritm
+    (23) statement -> aritm . NOTEQUALS aritm
+
+    RPAREN          shift and go to state 73
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+    LESSEQUAL       shift and go to state 83
+    GREATEREQUAL    shift and go to state 79
+    LESSTHAN        shift and go to state 81
+    GREATERTHAN     shift and go to state 82
+    EQUALS          shift and go to state 80
+    NOTEQUALS       shift and go to state 78
+
+
+state 86
+
+    (16) loop -> WHILE LPAREN VAR RPAREN . LBRACK init RBRACK
+
+    LBRACK          shift and go to state 111
+
+
+state 87
+
+    (29) bool_exp -> NOT LPAREN . statement RPAREN
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    BOOLEAN         shift and go to state 52
+    VAR             shift and go to state 57
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 24
+
+    atrib                          shift and go to state 45
+    aritm                          shift and go to state 49
+    statement                      shift and go to state 112
+
+state 88
+
+    (41) atrib -> VAR ASSIGN bool_exp RPAREN .
+
+    IF              reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    INT             reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    BOOL            reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    VAR             reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    WHILE           reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    RETURN          reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    RBRACK          reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    RPAREN          reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    AND             reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    OR              reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    SEMICOLON       reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+    COMMA           reduce using rule 41 (atrib -> VAR ASSIGN bool_exp RPAREN .)
+
+
+state 89
+
+    (40) atrib -> VAR ASSIGN bool_exp SEMICOLON .
+
+    IF              reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    INT             reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    BOOL            reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    VAR             reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    WHILE           reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    RETURN          reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    RBRACK          reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    RPAREN          reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    AND             reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    OR              reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    SEMICOLON       reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+    COMMA           reduce using rule 40 (atrib -> VAR ASSIGN bool_exp SEMICOLON .)
+
+
+state 90
+
+    (39) atrib -> VAR ASSIGN aritm RPAREN .
+
+    IF              reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    INT             reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    BOOL            reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    VAR             reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    WHILE           reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    RETURN          reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    RBRACK          reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    RPAREN          reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    AND             reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    OR              reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    SEMICOLON       reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+    COMMA           reduce using rule 39 (atrib -> VAR ASSIGN aritm RPAREN .)
+
+
+state 91
+
+    (38) atrib -> VAR ASSIGN aritm SEMICOLON .
+
+    IF              reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    INT             reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    BOOL            reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    VAR             reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    WHILE           reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    RETURN          reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    RBRACK          reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    RPAREN          reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    AND             reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    OR              reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    SEMICOLON       reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+    COMMA           reduce using rule 38 (atrib -> VAR ASSIGN aritm SEMICOLON .)
+
+
+state 92
+
+    (11) cond -> IF LPAREN NUMBER RPAREN . LBRACK init RBRACK
+    (14) cond -> IF LPAREN NUMBER RPAREN . LBRACK init RBRACK ELSE LBRACK init RBRACK
+
+    LBRACK          shift and go to state 113
+
+
+state 93
+
+    (9) cond -> IF LPAREN bool_exp RPAREN . LBRACK init RBRACK
+    (12) cond -> IF LPAREN bool_exp RPAREN . LBRACK init RBRACK ELSE LBRACK init RBRACK
+
+    LBRACK          shift and go to state 114
+
+
+state 94
+
+    (10) cond -> IF LPAREN VAR RPAREN . LBRACK init RBRACK
+    (13) cond -> IF LPAREN VAR RPAREN . LBRACK init RBRACK ELSE LBRACK init RBRACK
+
+    LBRACK          shift and go to state 115
+
+
+state 95
+
+    (48) declare -> INT VAR COMMA declare_same_line .
+
+    IF              reduce using rule 48 (declare -> INT VAR COMMA declare_same_line .)
+    INT             reduce using rule 48 (declare -> INT VAR COMMA declare_same_line .)
+    BOOL            reduce using rule 48 (declare -> INT VAR COMMA declare_same_line .)
+    VAR             reduce using rule 48 (declare -> INT VAR COMMA declare_same_line .)
+    WHILE           reduce using rule 48 (declare -> INT VAR COMMA declare_same_line .)
+    RETURN          reduce using rule 48 (declare -> INT VAR COMMA declare_same_line .)
+    RBRACK          reduce using rule 48 (declare -> INT VAR COMMA declare_same_line .)
+
+
+state 96
+
+    (50) declare_same_line -> VAR . COMMA declare_same_line
+    (51) declare_same_line -> VAR . SEMICOLON
+    (52) declare_same_line -> VAR . ASSIGN aritm COMMA declare_same_line
+    (53) declare_same_line -> VAR . ASSIGN aritm SEMICOLON
+    (54) declare_same_line -> VAR . ASSIGN bool_exp COMMA declare_same_line
+    (55) declare_same_line -> VAR . ASSIGN bool_exp SEMICOLON
+
+    COMMA           shift and go to state 117
+    SEMICOLON       shift and go to state 116
+    ASSIGN          shift and go to state 118
+
+
+state 97
+
+    (42) declare -> INT VAR ASSIGN aritm . SEMICOLON
+    (44) declare -> INT VAR ASSIGN aritm . COMMA declare_same_line
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    SEMICOLON       shift and go to state 119
+    COMMA           shift and go to state 120
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 98
+
+    (49) declare -> BOOL VAR COMMA declare_same_line .
+
+    IF              reduce using rule 49 (declare -> BOOL VAR COMMA declare_same_line .)
+    INT             reduce using rule 49 (declare -> BOOL VAR COMMA declare_same_line .)
+    BOOL            reduce using rule 49 (declare -> BOOL VAR COMMA declare_same_line .)
+    VAR             reduce using rule 49 (declare -> BOOL VAR COMMA declare_same_line .)
+    WHILE           reduce using rule 49 (declare -> BOOL VAR COMMA declare_same_line .)
+    RETURN          reduce using rule 49 (declare -> BOOL VAR COMMA declare_same_line .)
+    RBRACK          reduce using rule 49 (declare -> BOOL VAR COMMA declare_same_line .)
+
+
+state 99
+
+    (43) declare -> BOOL VAR ASSIGN bool_exp . SEMICOLON
+    (45) declare -> BOOL VAR ASSIGN bool_exp . COMMA declare_same_line
+    (26) bool_exp -> bool_exp . AND bool_exp
+    (27) bool_exp -> bool_exp . OR bool_exp
+
+    SEMICOLON       shift and go to state 121
+    COMMA           shift and go to state 122
+    AND             shift and go to state 75
+    OR              shift and go to state 77
+
+
+state 100
+
+    (17) loop -> WHILE LPAREN NUMBER RPAREN LBRACK . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 123
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 101
+
+    (26) bool_exp -> bool_exp AND bool_exp .
+    (26) bool_exp -> bool_exp . AND bool_exp
+    (27) bool_exp -> bool_exp . OR bool_exp
+
+    COMMA           reduce using rule 26 (bool_exp -> bool_exp AND bool_exp .)
+    SEMICOLON       reduce using rule 26 (bool_exp -> bool_exp AND bool_exp .)
+    AND             reduce using rule 26 (bool_exp -> bool_exp AND bool_exp .)
+    OR              reduce using rule 26 (bool_exp -> bool_exp AND bool_exp .)
+    RPAREN          reduce using rule 26 (bool_exp -> bool_exp AND bool_exp .)
+
+  ! AND             [ shift and go to state 75 ]
+  ! OR              [ shift and go to state 77 ]
+
+
+state 102
+
+    (15) loop -> WHILE LPAREN bool_exp RPAREN LBRACK . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 124
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 103
+
+    (27) bool_exp -> bool_exp OR bool_exp .
+    (26) bool_exp -> bool_exp . AND bool_exp
+    (27) bool_exp -> bool_exp . OR bool_exp
+
+    COMMA           reduce using rule 27 (bool_exp -> bool_exp OR bool_exp .)
+    SEMICOLON       reduce using rule 27 (bool_exp -> bool_exp OR bool_exp .)
+    OR              reduce using rule 27 (bool_exp -> bool_exp OR bool_exp .)
+    RPAREN          reduce using rule 27 (bool_exp -> bool_exp OR bool_exp .)
+    AND             shift and go to state 75
+
+  ! AND             [ reduce using rule 27 (bool_exp -> bool_exp OR bool_exp .) ]
+  ! OR              [ shift and go to state 77 ]
+
+
+state 104
+
+    (23) statement -> aritm NOTEQUALS aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    SEMICOLON       reduce using rule 23 (statement -> aritm NOTEQUALS aritm .)
+    COMMA           reduce using rule 23 (statement -> aritm NOTEQUALS aritm .)
+    AND             reduce using rule 23 (statement -> aritm NOTEQUALS aritm .)
+    OR              reduce using rule 23 (statement -> aritm NOTEQUALS aritm .)
+    RPAREN          reduce using rule 23 (statement -> aritm NOTEQUALS aritm .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 105
+
+    (19) statement -> aritm GREATEREQUAL aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    SEMICOLON       reduce using rule 19 (statement -> aritm GREATEREQUAL aritm .)
+    COMMA           reduce using rule 19 (statement -> aritm GREATEREQUAL aritm .)
+    AND             reduce using rule 19 (statement -> aritm GREATEREQUAL aritm .)
+    OR              reduce using rule 19 (statement -> aritm GREATEREQUAL aritm .)
+    RPAREN          reduce using rule 19 (statement -> aritm GREATEREQUAL aritm .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 106
+
+    (22) statement -> aritm EQUALS aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    SEMICOLON       reduce using rule 22 (statement -> aritm EQUALS aritm .)
+    COMMA           reduce using rule 22 (statement -> aritm EQUALS aritm .)
+    AND             reduce using rule 22 (statement -> aritm EQUALS aritm .)
+    OR              reduce using rule 22 (statement -> aritm EQUALS aritm .)
+    RPAREN          reduce using rule 22 (statement -> aritm EQUALS aritm .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 107
+
+    (20) statement -> aritm LESSTHAN aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    SEMICOLON       reduce using rule 20 (statement -> aritm LESSTHAN aritm .)
+    COMMA           reduce using rule 20 (statement -> aritm LESSTHAN aritm .)
+    AND             reduce using rule 20 (statement -> aritm LESSTHAN aritm .)
+    OR              reduce using rule 20 (statement -> aritm LESSTHAN aritm .)
+    RPAREN          reduce using rule 20 (statement -> aritm LESSTHAN aritm .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 108
+
+    (21) statement -> aritm GREATERTHAN aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    SEMICOLON       reduce using rule 21 (statement -> aritm GREATERTHAN aritm .)
+    COMMA           reduce using rule 21 (statement -> aritm GREATERTHAN aritm .)
+    AND             reduce using rule 21 (statement -> aritm GREATERTHAN aritm .)
+    OR              reduce using rule 21 (statement -> aritm GREATERTHAN aritm .)
+    RPAREN          reduce using rule 21 (statement -> aritm GREATERTHAN aritm .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 109
+
+    (18) statement -> aritm LESSEQUAL aritm .
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+
+    SEMICOLON       reduce using rule 18 (statement -> aritm LESSEQUAL aritm .)
+    COMMA           reduce using rule 18 (statement -> aritm LESSEQUAL aritm .)
+    AND             reduce using rule 18 (statement -> aritm LESSEQUAL aritm .)
+    OR              reduce using rule 18 (statement -> aritm LESSEQUAL aritm .)
+    RPAREN          reduce using rule 18 (statement -> aritm LESSEQUAL aritm .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+
+
+state 110
+
+    (28) bool_exp -> LPAREN bool_exp RPAREN .
+
+    COMMA           reduce using rule 28 (bool_exp -> LPAREN bool_exp RPAREN .)
+    SEMICOLON       reduce using rule 28 (bool_exp -> LPAREN bool_exp RPAREN .)
+    AND             reduce using rule 28 (bool_exp -> LPAREN bool_exp RPAREN .)
+    OR              reduce using rule 28 (bool_exp -> LPAREN bool_exp RPAREN .)
+    RPAREN          reduce using rule 28 (bool_exp -> LPAREN bool_exp RPAREN .)
+
+
+state 111
+
+    (16) loop -> WHILE LPAREN VAR RPAREN LBRACK . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 125
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 112
+
+    (29) bool_exp -> NOT LPAREN statement . RPAREN
+
+    RPAREN          shift and go to state 126
+
+
+state 113
+
+    (11) cond -> IF LPAREN NUMBER RPAREN LBRACK . init RBRACK
+    (14) cond -> IF LPAREN NUMBER RPAREN LBRACK . init RBRACK ELSE LBRACK init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 127
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 114
+
+    (9) cond -> IF LPAREN bool_exp RPAREN LBRACK . init RBRACK
+    (12) cond -> IF LPAREN bool_exp RPAREN LBRACK . init RBRACK ELSE LBRACK init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 128
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 115
+
+    (10) cond -> IF LPAREN VAR RPAREN LBRACK . init RBRACK
+    (13) cond -> IF LPAREN VAR RPAREN LBRACK . init RBRACK ELSE LBRACK init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 129
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 116
+
+    (51) declare_same_line -> VAR SEMICOLON .
+
+    IF              reduce using rule 51 (declare_same_line -> VAR SEMICOLON .)
+    INT             reduce using rule 51 (declare_same_line -> VAR SEMICOLON .)
+    BOOL            reduce using rule 51 (declare_same_line -> VAR SEMICOLON .)
+    VAR             reduce using rule 51 (declare_same_line -> VAR SEMICOLON .)
+    WHILE           reduce using rule 51 (declare_same_line -> VAR SEMICOLON .)
+    RETURN          reduce using rule 51 (declare_same_line -> VAR SEMICOLON .)
+    RBRACK          reduce using rule 51 (declare_same_line -> VAR SEMICOLON .)
+
+
+state 117
+
+    (50) declare_same_line -> VAR COMMA . declare_same_line
+    (50) declare_same_line -> . VAR COMMA declare_same_line
+    (51) declare_same_line -> . VAR SEMICOLON
+    (52) declare_same_line -> . VAR ASSIGN aritm COMMA declare_same_line
+    (53) declare_same_line -> . VAR ASSIGN aritm SEMICOLON
+    (54) declare_same_line -> . VAR ASSIGN bool_exp COMMA declare_same_line
+    (55) declare_same_line -> . VAR ASSIGN bool_exp SEMICOLON
+
+    VAR             shift and go to state 96
+
+    declare_same_line              shift and go to state 130
+
+state 118
+
+    (52) declare_same_line -> VAR ASSIGN . aritm COMMA declare_same_line
+    (53) declare_same_line -> VAR ASSIGN . aritm SEMICOLON
+    (54) declare_same_line -> VAR ASSIGN . bool_exp COMMA declare_same_line
+    (55) declare_same_line -> VAR ASSIGN . bool_exp SEMICOLON
+    (31) aritm -> . VAR
+    (32) aritm -> . NUMBER
+    (33) aritm -> . LPAREN aritm RPAREN
+    (34) aritm -> . aritm PLUS aritm
+    (35) aritm -> . aritm MINUS aritm
+    (36) aritm -> . aritm TIMES aritm
+    (37) aritm -> . aritm DIVIDE aritm
+    (26) bool_exp -> . bool_exp AND bool_exp
+    (27) bool_exp -> . bool_exp OR bool_exp
+    (28) bool_exp -> . LPAREN bool_exp RPAREN
+    (29) bool_exp -> . NOT LPAREN statement RPAREN
+    (30) bool_exp -> . statement
+    (18) statement -> . aritm LESSEQUAL aritm
+    (19) statement -> . aritm GREATEREQUAL aritm
+    (20) statement -> . aritm LESSTHAN aritm
+    (21) statement -> . aritm GREATERTHAN aritm
+    (22) statement -> . aritm EQUALS aritm
+    (23) statement -> . aritm NOTEQUALS aritm
+    (24) statement -> . atrib
+    (25) statement -> . BOOLEAN
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+
+    VAR             shift and go to state 57
+    NUMBER          shift and go to state 22
+    LPAREN          shift and go to state 56
+    NOT             shift and go to state 53
+    BOOLEAN         shift and go to state 52
+
+    bool_exp                       shift and go to state 131
+    atrib                          shift and go to state 45
+    statement                      shift and go to state 48
+    aritm                          shift and go to state 132
+
+state 119
+
+    (42) declare -> INT VAR ASSIGN aritm SEMICOLON .
+
+    IF              reduce using rule 42 (declare -> INT VAR ASSIGN aritm SEMICOLON .)
+    INT             reduce using rule 42 (declare -> INT VAR ASSIGN aritm SEMICOLON .)
+    BOOL            reduce using rule 42 (declare -> INT VAR ASSIGN aritm SEMICOLON .)
+    VAR             reduce using rule 42 (declare -> INT VAR ASSIGN aritm SEMICOLON .)
+    WHILE           reduce using rule 42 (declare -> INT VAR ASSIGN aritm SEMICOLON .)
+    RETURN          reduce using rule 42 (declare -> INT VAR ASSIGN aritm SEMICOLON .)
+    RBRACK          reduce using rule 42 (declare -> INT VAR ASSIGN aritm SEMICOLON .)
+
+
+state 120
+
+    (44) declare -> INT VAR ASSIGN aritm COMMA . declare_same_line
+    (50) declare_same_line -> . VAR COMMA declare_same_line
+    (51) declare_same_line -> . VAR SEMICOLON
+    (52) declare_same_line -> . VAR ASSIGN aritm COMMA declare_same_line
+    (53) declare_same_line -> . VAR ASSIGN aritm SEMICOLON
+    (54) declare_same_line -> . VAR ASSIGN bool_exp COMMA declare_same_line
+    (55) declare_same_line -> . VAR ASSIGN bool_exp SEMICOLON
+
+    VAR             shift and go to state 96
+
+    declare_same_line              shift and go to state 133
+
+state 121
+
+    (43) declare -> BOOL VAR ASSIGN bool_exp SEMICOLON .
+
+    IF              reduce using rule 43 (declare -> BOOL VAR ASSIGN bool_exp SEMICOLON .)
+    INT             reduce using rule 43 (declare -> BOOL VAR ASSIGN bool_exp SEMICOLON .)
+    BOOL            reduce using rule 43 (declare -> BOOL VAR ASSIGN bool_exp SEMICOLON .)
+    VAR             reduce using rule 43 (declare -> BOOL VAR ASSIGN bool_exp SEMICOLON .)
+    WHILE           reduce using rule 43 (declare -> BOOL VAR ASSIGN bool_exp SEMICOLON .)
+    RETURN          reduce using rule 43 (declare -> BOOL VAR ASSIGN bool_exp SEMICOLON .)
+    RBRACK          reduce using rule 43 (declare -> BOOL VAR ASSIGN bool_exp SEMICOLON .)
+
+
+state 122
+
+    (45) declare -> BOOL VAR ASSIGN bool_exp COMMA . declare_same_line
+    (50) declare_same_line -> . VAR COMMA declare_same_line
+    (51) declare_same_line -> . VAR SEMICOLON
+    (52) declare_same_line -> . VAR ASSIGN aritm COMMA declare_same_line
+    (53) declare_same_line -> . VAR ASSIGN aritm SEMICOLON
+    (54) declare_same_line -> . VAR ASSIGN bool_exp COMMA declare_same_line
+    (55) declare_same_line -> . VAR ASSIGN bool_exp SEMICOLON
+
+    VAR             shift and go to state 96
+
+    declare_same_line              shift and go to state 134
+
+state 123
+
+    (17) loop -> WHILE LPAREN NUMBER RPAREN LBRACK init . RBRACK
+
+    RBRACK          shift and go to state 135
+
+
+state 124
+
+    (15) loop -> WHILE LPAREN bool_exp RPAREN LBRACK init . RBRACK
+
+    RBRACK          shift and go to state 136
+
+
+state 125
+
+    (16) loop -> WHILE LPAREN VAR RPAREN LBRACK init . RBRACK
+
+    RBRACK          shift and go to state 137
+
+
+state 126
+
+    (29) bool_exp -> NOT LPAREN statement RPAREN .
+
+    COMMA           reduce using rule 29 (bool_exp -> NOT LPAREN statement RPAREN .)
+    SEMICOLON       reduce using rule 29 (bool_exp -> NOT LPAREN statement RPAREN .)
+    AND             reduce using rule 29 (bool_exp -> NOT LPAREN statement RPAREN .)
+    OR              reduce using rule 29 (bool_exp -> NOT LPAREN statement RPAREN .)
+    RPAREN          reduce using rule 29 (bool_exp -> NOT LPAREN statement RPAREN .)
+
+
+state 127
+
+    (11) cond -> IF LPAREN NUMBER RPAREN LBRACK init . RBRACK
+    (14) cond -> IF LPAREN NUMBER RPAREN LBRACK init . RBRACK ELSE LBRACK init RBRACK
+
+    RBRACK          shift and go to state 138
+
+
+state 128
+
+    (9) cond -> IF LPAREN bool_exp RPAREN LBRACK init . RBRACK
+    (12) cond -> IF LPAREN bool_exp RPAREN LBRACK init . RBRACK ELSE LBRACK init RBRACK
+
+    RBRACK          shift and go to state 139
+
+
+state 129
+
+    (10) cond -> IF LPAREN VAR RPAREN LBRACK init . RBRACK
+    (13) cond -> IF LPAREN VAR RPAREN LBRACK init . RBRACK ELSE LBRACK init RBRACK
+
+    RBRACK          shift and go to state 140
+
+
+state 130
+
+    (50) declare_same_line -> VAR COMMA declare_same_line .
+
+    IF              reduce using rule 50 (declare_same_line -> VAR COMMA declare_same_line .)
+    INT             reduce using rule 50 (declare_same_line -> VAR COMMA declare_same_line .)
+    BOOL            reduce using rule 50 (declare_same_line -> VAR COMMA declare_same_line .)
+    VAR             reduce using rule 50 (declare_same_line -> VAR COMMA declare_same_line .)
+    WHILE           reduce using rule 50 (declare_same_line -> VAR COMMA declare_same_line .)
+    RETURN          reduce using rule 50 (declare_same_line -> VAR COMMA declare_same_line .)
+    RBRACK          reduce using rule 50 (declare_same_line -> VAR COMMA declare_same_line .)
+
+
+state 131
+
+    (54) declare_same_line -> VAR ASSIGN bool_exp . COMMA declare_same_line
+    (55) declare_same_line -> VAR ASSIGN bool_exp . SEMICOLON
+    (26) bool_exp -> bool_exp . AND bool_exp
+    (27) bool_exp -> bool_exp . OR bool_exp
+
+    COMMA           shift and go to state 142
+    SEMICOLON       shift and go to state 141
+    AND             shift and go to state 75
+    OR              shift and go to state 77
+
+
+state 132
+
+    (52) declare_same_line -> VAR ASSIGN aritm . COMMA declare_same_line
+    (53) declare_same_line -> VAR ASSIGN aritm . SEMICOLON
+    (34) aritm -> aritm . PLUS aritm
+    (35) aritm -> aritm . MINUS aritm
+    (36) aritm -> aritm . TIMES aritm
+    (37) aritm -> aritm . DIVIDE aritm
+    (18) statement -> aritm . LESSEQUAL aritm
+    (19) statement -> aritm . GREATEREQUAL aritm
+    (20) statement -> aritm . LESSTHAN aritm
+    (21) statement -> aritm . GREATERTHAN aritm
+    (22) statement -> aritm . EQUALS aritm
+    (23) statement -> aritm . NOTEQUALS aritm
+
+    COMMA           shift and go to state 144
+    SEMICOLON       shift and go to state 143
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+    TIMES           shift and go to state 39
+    DIVIDE          shift and go to state 42
+    LESSEQUAL       shift and go to state 83
+    GREATEREQUAL    shift and go to state 79
+    LESSTHAN        shift and go to state 81
+    GREATERTHAN     shift and go to state 82
+    EQUALS          shift and go to state 80
+    NOTEQUALS       shift and go to state 78
+
+
+state 133
+
+    (44) declare -> INT VAR ASSIGN aritm COMMA declare_same_line .
+
+    IF              reduce using rule 44 (declare -> INT VAR ASSIGN aritm COMMA declare_same_line .)
+    INT             reduce using rule 44 (declare -> INT VAR ASSIGN aritm COMMA declare_same_line .)
+    BOOL            reduce using rule 44 (declare -> INT VAR ASSIGN aritm COMMA declare_same_line .)
+    VAR             reduce using rule 44 (declare -> INT VAR ASSIGN aritm COMMA declare_same_line .)
+    WHILE           reduce using rule 44 (declare -> INT VAR ASSIGN aritm COMMA declare_same_line .)
+    RETURN          reduce using rule 44 (declare -> INT VAR ASSIGN aritm COMMA declare_same_line .)
+    RBRACK          reduce using rule 44 (declare -> INT VAR ASSIGN aritm COMMA declare_same_line .)
+
+
+state 134
+
+    (45) declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line .
+
+    IF              reduce using rule 45 (declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line .)
+    INT             reduce using rule 45 (declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line .)
+    BOOL            reduce using rule 45 (declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line .)
+    VAR             reduce using rule 45 (declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line .)
+    WHILE           reduce using rule 45 (declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line .)
+    RETURN          reduce using rule 45 (declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line .)
+    RBRACK          reduce using rule 45 (declare -> BOOL VAR ASSIGN bool_exp COMMA declare_same_line .)
+
+
+state 135
+
+    (17) loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK .
+
+    IF              reduce using rule 17 (loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    INT             reduce using rule 17 (loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    BOOL            reduce using rule 17 (loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    VAR             reduce using rule 17 (loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    WHILE           reduce using rule 17 (loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    RETURN          reduce using rule 17 (loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    RBRACK          reduce using rule 17 (loop -> WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+
+
+state 136
+
+    (15) loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK .
+
+    IF              reduce using rule 15 (loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    INT             reduce using rule 15 (loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    BOOL            reduce using rule 15 (loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    VAR             reduce using rule 15 (loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    WHILE           reduce using rule 15 (loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    RETURN          reduce using rule 15 (loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    RBRACK          reduce using rule 15 (loop -> WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+
+
+state 137
+
+    (16) loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK .
+
+    IF              reduce using rule 16 (loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK .)
+    INT             reduce using rule 16 (loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK .)
+    BOOL            reduce using rule 16 (loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK .)
+    VAR             reduce using rule 16 (loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK .)
+    WHILE           reduce using rule 16 (loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK .)
+    RETURN          reduce using rule 16 (loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK .)
+    RBRACK          reduce using rule 16 (loop -> WHILE LPAREN VAR RPAREN LBRACK init RBRACK .)
+
+
+state 138
+
+    (11) cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK .
+    (14) cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK . ELSE LBRACK init RBRACK
+
+    IF              reduce using rule 11 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    INT             reduce using rule 11 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    BOOL            reduce using rule 11 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    VAR             reduce using rule 11 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    WHILE           reduce using rule 11 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    RETURN          reduce using rule 11 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    RBRACK          reduce using rule 11 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK .)
+    ELSE            shift and go to state 145
+
+
+state 139
+
+    (9) cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK .
+    (12) cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK . ELSE LBRACK init RBRACK
+
+    IF              reduce using rule 9 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    INT             reduce using rule 9 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    BOOL            reduce using rule 9 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    VAR             reduce using rule 9 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    WHILE           reduce using rule 9 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    RETURN          reduce using rule 9 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    RBRACK          reduce using rule 9 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK .)
+    ELSE            shift and go to state 146
+
+
+state 140
+
+    (10) cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK .
+    (13) cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK . ELSE LBRACK init RBRACK
+
+    IF              reduce using rule 10 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK .)
+    INT             reduce using rule 10 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK .)
+    BOOL            reduce using rule 10 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK .)
+    VAR             reduce using rule 10 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK .)
+    WHILE           reduce using rule 10 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK .)
+    RETURN          reduce using rule 10 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK .)
+    RBRACK          reduce using rule 10 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK .)
+    ELSE            shift and go to state 147
+
+
+state 141
+
+    (55) declare_same_line -> VAR ASSIGN bool_exp SEMICOLON .
+
+    IF              reduce using rule 55 (declare_same_line -> VAR ASSIGN bool_exp SEMICOLON .)
+    INT             reduce using rule 55 (declare_same_line -> VAR ASSIGN bool_exp SEMICOLON .)
+    BOOL            reduce using rule 55 (declare_same_line -> VAR ASSIGN bool_exp SEMICOLON .)
+    VAR             reduce using rule 55 (declare_same_line -> VAR ASSIGN bool_exp SEMICOLON .)
+    WHILE           reduce using rule 55 (declare_same_line -> VAR ASSIGN bool_exp SEMICOLON .)
+    RETURN          reduce using rule 55 (declare_same_line -> VAR ASSIGN bool_exp SEMICOLON .)
+    RBRACK          reduce using rule 55 (declare_same_line -> VAR ASSIGN bool_exp SEMICOLON .)
+
+
+state 142
+
+    (54) declare_same_line -> VAR ASSIGN bool_exp COMMA . declare_same_line
+    (50) declare_same_line -> . VAR COMMA declare_same_line
+    (51) declare_same_line -> . VAR SEMICOLON
+    (52) declare_same_line -> . VAR ASSIGN aritm COMMA declare_same_line
+    (53) declare_same_line -> . VAR ASSIGN aritm SEMICOLON
+    (54) declare_same_line -> . VAR ASSIGN bool_exp COMMA declare_same_line
+    (55) declare_same_line -> . VAR ASSIGN bool_exp SEMICOLON
+
+    VAR             shift and go to state 96
+
+    declare_same_line              shift and go to state 148
+
+state 143
+
+    (53) declare_same_line -> VAR ASSIGN aritm SEMICOLON .
+
+    IF              reduce using rule 53 (declare_same_line -> VAR ASSIGN aritm SEMICOLON .)
+    INT             reduce using rule 53 (declare_same_line -> VAR ASSIGN aritm SEMICOLON .)
+    BOOL            reduce using rule 53 (declare_same_line -> VAR ASSIGN aritm SEMICOLON .)
+    VAR             reduce using rule 53 (declare_same_line -> VAR ASSIGN aritm SEMICOLON .)
+    WHILE           reduce using rule 53 (declare_same_line -> VAR ASSIGN aritm SEMICOLON .)
+    RETURN          reduce using rule 53 (declare_same_line -> VAR ASSIGN aritm SEMICOLON .)
+    RBRACK          reduce using rule 53 (declare_same_line -> VAR ASSIGN aritm SEMICOLON .)
+
+
+state 144
+
+    (52) declare_same_line -> VAR ASSIGN aritm COMMA . declare_same_line
+    (50) declare_same_line -> . VAR COMMA declare_same_line
+    (51) declare_same_line -> . VAR SEMICOLON
+    (52) declare_same_line -> . VAR ASSIGN aritm COMMA declare_same_line
+    (53) declare_same_line -> . VAR ASSIGN aritm SEMICOLON
+    (54) declare_same_line -> . VAR ASSIGN bool_exp COMMA declare_same_line
+    (55) declare_same_line -> . VAR ASSIGN bool_exp SEMICOLON
+
+    VAR             shift and go to state 96
+
+    declare_same_line              shift and go to state 149
+
+state 145
+
+    (14) cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE . LBRACK init RBRACK
+
+    LBRACK          shift and go to state 150
+
+
+state 146
+
+    (12) cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE . LBRACK init RBRACK
+
+    LBRACK          shift and go to state 151
+
+
+state 147
+
+    (13) cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE . LBRACK init RBRACK
+
+    LBRACK          shift and go to state 152
+
+
+state 148
+
+    (54) declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line .
+
+    IF              reduce using rule 54 (declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line .)
+    INT             reduce using rule 54 (declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line .)
+    BOOL            reduce using rule 54 (declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line .)
+    VAR             reduce using rule 54 (declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line .)
+    WHILE           reduce using rule 54 (declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line .)
+    RETURN          reduce using rule 54 (declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line .)
+    RBRACK          reduce using rule 54 (declare_same_line -> VAR ASSIGN bool_exp COMMA declare_same_line .)
+
+
+state 149
+
+    (52) declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line .
+
+    IF              reduce using rule 52 (declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line .)
+    INT             reduce using rule 52 (declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line .)
+    BOOL            reduce using rule 52 (declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line .)
+    VAR             reduce using rule 52 (declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line .)
+    WHILE           reduce using rule 52 (declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line .)
+    RETURN          reduce using rule 52 (declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line .)
+    RBRACK          reduce using rule 52 (declare_same_line -> VAR ASSIGN aritm COMMA declare_same_line .)
+
+
+state 150
+
+    (14) cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 153
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 151
+
+    (12) cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 154
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 152
+
+    (13) cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK . init RBRACK
+    (4) init -> . cond init
+    (5) init -> . declare init
+    (6) init -> . atrib init
+    (7) init -> . loop init
+    (8) init -> . return init
+    (58) init -> . empty
+    (9) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (10) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK
+    (11) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (12) cond -> . IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (13) cond -> . IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (14) cond -> . IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK
+    (42) declare -> . INT VAR ASSIGN aritm SEMICOLON
+    (43) declare -> . BOOL VAR ASSIGN bool_exp SEMICOLON
+    (44) declare -> . INT VAR ASSIGN aritm COMMA declare_same_line
+    (45) declare -> . BOOL VAR ASSIGN bool_exp COMMA declare_same_line
+    (46) declare -> . INT VAR SEMICOLON
+    (47) declare -> . BOOL VAR SEMICOLON
+    (48) declare -> . INT VAR COMMA declare_same_line
+    (49) declare -> . BOOL VAR COMMA declare_same_line
+    (38) atrib -> . VAR ASSIGN aritm SEMICOLON
+    (39) atrib -> . VAR ASSIGN aritm RPAREN
+    (40) atrib -> . VAR ASSIGN bool_exp SEMICOLON
+    (41) atrib -> . VAR ASSIGN bool_exp RPAREN
+    (15) loop -> . WHILE LPAREN bool_exp RPAREN LBRACK init RBRACK
+    (16) loop -> . WHILE LPAREN VAR RPAREN LBRACK init RBRACK
+    (17) loop -> . WHILE LPAREN NUMBER RPAREN LBRACK init RBRACK
+    (56) return -> . RETURN aritm SEMICOLON
+    (57) return -> . RETURN BOOLEAN SEMICOLON
+    (59) empty -> .
+
+    IF              shift and go to state 13
+    INT             shift and go to state 14
+    BOOL            shift and go to state 15
+    VAR             shift and go to state 12
+    WHILE           shift and go to state 7
+    RETURN          shift and go to state 6
+    RBRACK          reduce using rule 59 (empty -> .)
+
+    atrib                          shift and go to state 5
+    return                         shift and go to state 11
+    init                           shift and go to state 155
+    cond                           shift and go to state 8
+    empty                          shift and go to state 10
+    declare                        shift and go to state 16
+    loop                           shift and go to state 17
+
+state 153
+
+    (14) cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init . RBRACK
+
+    RBRACK          shift and go to state 156
+
+
+state 154
+
+    (12) cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init . RBRACK
+
+    RBRACK          shift and go to state 157
+
+
+state 155
+
+    (13) cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init . RBRACK
+
+    RBRACK          shift and go to state 158
+
+
+state 156
+
+    (14) cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .
+
+    IF              reduce using rule 14 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    INT             reduce using rule 14 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    BOOL            reduce using rule 14 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    VAR             reduce using rule 14 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    WHILE           reduce using rule 14 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    RETURN          reduce using rule 14 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    RBRACK          reduce using rule 14 (cond -> IF LPAREN NUMBER RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+
+
+state 157
+
+    (12) cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .
+
+    IF              reduce using rule 12 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    INT             reduce using rule 12 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    BOOL            reduce using rule 12 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    VAR             reduce using rule 12 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    WHILE           reduce using rule 12 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    RETURN          reduce using rule 12 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    RBRACK          reduce using rule 12 (cond -> IF LPAREN bool_exp RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+
+
+state 158
+
+    (13) cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .
+
+    IF              reduce using rule 13 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    INT             reduce using rule 13 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    BOOL            reduce using rule 13 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    VAR             reduce using rule 13 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    WHILE           reduce using rule 13 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    RETURN          reduce using rule 13 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+    RBRACK          reduce using rule 13 (cond -> IF LPAREN VAR RPAREN LBRACK init RBRACK ELSE LBRACK init RBRACK .)
+
